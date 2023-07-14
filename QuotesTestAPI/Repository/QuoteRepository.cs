@@ -15,7 +15,7 @@ namespace QuotesTestAPI.Repository
 
         public ICollection<Quote> GetQuotes()
         {
-            throw new NotImplementedException();
+            return _context.Quotes.ToList();
         }
     }
 }
