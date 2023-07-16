@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuotesTestAPI.Interfacecs;
+using QuotesTestAPI.Models;
 
 namespace QuotesTestAPI.Controllers
 {
@@ -12,6 +13,10 @@ namespace QuotesTestAPI.Controllers
             _quotesRepository = quotesRepository;
         }
 
-        
+        [HttpGet]
+        public IEnumerable<Quote> Get()
+        {
+            return _quotesRepository.GetQuotes();
+        }
     }
 }
