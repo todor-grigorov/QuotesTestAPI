@@ -17,5 +17,10 @@ namespace QuotesTestAPI.Repository
         {
             return _context.Quotes.ToList();
         }
+
+        public Quote GetQuotesById(int id)
+        {
+            return _context.Quotes.Where(q => q.Id == id).FirstOrDefault();
+        }
     }
 }
