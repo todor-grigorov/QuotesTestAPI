@@ -18,5 +18,11 @@ namespace QuotesTestAPI.Controllers
         {
             return _quotesRepository.GetQuotes();
         }
+
+        [HttpGet("{id}", Name = "Get")]
+        public Quote Get(int id)
+        {
+            return _quotesRepository.GetQuotesById(id);
+        }
     }
 }
