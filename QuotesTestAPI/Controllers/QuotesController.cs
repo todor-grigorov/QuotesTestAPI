@@ -25,9 +25,10 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpGet("{id}", Name = "Get")]
-        public Quote Get(int id)
+        public QuoteDto Get(int id)
         {
-            return _quotesRepository.GetQuotesById(id);
+            var quote = _mapper.Map<QuoteDto>(_quotesRepository.GetQuotesById(id));
+            return quote;
         }
     }
 }
