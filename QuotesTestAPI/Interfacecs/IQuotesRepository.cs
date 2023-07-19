@@ -6,5 +6,6 @@ namespace QuotesTestAPI.Interfacecs
     {
         ICollection<Quote> GetQuotes();
         Quote GetQuotesById(int id);
+        void CreateQuote(Quote quote);
     }
 }
