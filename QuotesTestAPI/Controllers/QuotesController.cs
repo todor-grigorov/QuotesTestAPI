@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using QuotesTestAPI.Dto;
 using QuotesTestAPI.Interfacecs;
 using QuotesTestAPI.Models;
 
@@ -7,16 +9,19 @@ namespace QuotesTestAPI.Controllers
     public class QuotesController : Controller
     {
         private readonly IQuotesRepository _quotesRepository;
+        private readonly IMapper _mapper;
 
-        public QuotesController(IQuotesRepository quotesRepository)
+        public QuotesController(IQuotesRepository quotesRepository, IMapper mapper)
         {
             _quotesRepository = quotesRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public IEnumerable<Quote> Get()
+        public IEnumerable<QuoteDto> Get()
         {
-            return _quotesRepository.GetQuotes();
+            var quotes = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
+            return quotes;
         }
 
         [HttpGet("{id}", Name = "Get")]
