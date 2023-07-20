@@ -16,6 +16,7 @@ namespace QuotesTestAPI.Repository
         public void CreateQuote(Quote quote)
         {
             _context.Quotes.Add(quote);
+            _context.SaveChanges();
         }
 
         public ICollection<Quote> GetQuotes()
