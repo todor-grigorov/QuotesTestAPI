@@ -13,6 +13,11 @@ namespace QuotesTestAPI.Repository
             _context = context;
         }
 
+        public void CreateQuote(Quote quote)
+        {
+            _context.Quotes.Add(quote);
+        }
+
         public ICollection<Quote> GetQuotes()
         {
             return _context.Quotes.ToList();
