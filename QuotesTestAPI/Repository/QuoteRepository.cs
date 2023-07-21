@@ -28,5 +28,11 @@ namespace QuotesTestAPI.Repository
         {
             return _context.Quotes.Where(q => q.Id == id).FirstOrDefault();
         }
+
+        public void UpdateQuote(Quote quote)
+        {
+            _context.Update(quote);
+            _context.SaveChanges();
+        }
     }
 }
