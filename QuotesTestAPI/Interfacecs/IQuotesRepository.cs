@@ -8,5 +8,6 @@ namespace QuotesTestAPI.Interfacecs
         Quote GetQuotesById(int id);
         void CreateQuote(Quote quote);
         void UpdateQuote(Quote quote);
+        bool Save();
     }
 }
