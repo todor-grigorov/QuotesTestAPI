@@ -37,5 +37,12 @@ namespace QuotesTestAPI.Controllers
             var quoteMap = _mapper.Map<Quote>(quoteCreate);
             _quotesRepository.CreateQuote(quoteMap);
         }
+
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody]QuoteDto updateQuote)
+        {
+            var quoteMap = _mapper.Map<Quote>(updateQuote);
+            _quotesRepository.UpdateQuote(quoteMap);
+        }
     }
 }
