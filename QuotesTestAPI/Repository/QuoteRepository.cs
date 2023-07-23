@@ -19,6 +19,12 @@ namespace QuotesTestAPI.Repository
             _context.SaveChanges();
         }
 
+        public void DeleteQuote(Quote quote)
+        {
+            _context.Remove(quote);
+            _context.SaveChanges();
+        }
+
         public ICollection<Quote> GetQuotes()
         {
             return _context.Quotes.ToList();
