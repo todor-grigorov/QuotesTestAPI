@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using QuotesTestAPI.Dto;
 using QuotesTestAPI.Interfacecs;
 using QuotesTestAPI.Models;
@@ -18,10 +19,11 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<QuoteDto> Get()
+        [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
+        public IActionResult Get()
         {
             var quotes = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
-            return quotes;
+            return Ok(quotes);
         }
 
         [HttpGet("{id}", Name = "Get")]
