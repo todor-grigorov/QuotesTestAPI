@@ -22,8 +22,14 @@ namespace QuotesTestAPI.Controllers
         [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
         public IActionResult Get()
         {
-            var quotes = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
-            return Ok(quotes);
+            var quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(quotesResult);
         }
 
         [HttpGet("{id}", Name = "Get")]
