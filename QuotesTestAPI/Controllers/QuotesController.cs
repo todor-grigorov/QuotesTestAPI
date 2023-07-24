@@ -44,5 +44,12 @@ namespace QuotesTestAPI.Controllers
             var quoteMap = _mapper.Map<Quote>(updateQuote);
             _quotesRepository.UpdateQuote(quoteMap);
         }
+
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            var quote = _quotesRepository.GetQuotesById(id);
+            _quotesRepository.DeleteQuote(quote);
+        }
     }
 }
