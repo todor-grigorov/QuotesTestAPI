@@ -20,6 +20,7 @@ namespace QuotesTestAPI.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
+        [ProducesResponseType(400)]
         public IActionResult Get()
         {
             var quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
@@ -34,6 +35,7 @@ namespace QuotesTestAPI.Controllers
 
         [HttpGet("{id}", Name = "Get")]
         [ProducesResponseType(200, Type = typeof(QuoteDto))]
+        [ProducesResponseType(400)]
         public IActionResult Get(int id)
         {
             var quote = _mapper.Map<QuoteDto>(_quotesRepository.GetQuotesById(id));
