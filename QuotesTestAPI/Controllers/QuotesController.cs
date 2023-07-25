@@ -33,10 +33,17 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpGet("{id}", Name = "Get")]
-        public QuoteDto Get(int id)
+        [ProducesResponseType(200, Type = typeof(QuoteDto))]
+        public IActionResult Get(int id)
         {
             var quote = _mapper.Map<QuoteDto>(_quotesRepository.GetQuotesById(id));
-            return quote;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(quote);
         }
 
         [HttpPost]
