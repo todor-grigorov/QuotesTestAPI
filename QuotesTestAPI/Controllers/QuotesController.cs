@@ -54,7 +54,21 @@ namespace QuotesTestAPI.Controllers
             if (quoteCreate == null)
                 return BadRequest(ModelState);
 
-        var quoteMap = _mapper.Map<Quote>(quoteCreate);
+            var quote = _quotesRepository.GetQuotes().Where(q => q.Title.Trim().ToUpper() == quoteCreate.Title.Trim().ToUpper() 
+                        && q.Description.Trim().ToUpper() == quoteCreate.Description.Trim().ToUpper())
+                        .FirstOrDefault();
+
+
+            if (quote != null)
+            {
+                ModelState.AddModelError("", "Quote already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var quoteMap = _mapper.Map<Quote>(quoteCreate);
             _quotesRepository.CreateQuote(quoteMap);
 
             return Ok("Successfully created");
