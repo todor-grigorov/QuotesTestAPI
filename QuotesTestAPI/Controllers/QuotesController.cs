@@ -49,10 +49,15 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody]QuoteDto quoteCreate)
-        {
-            var quoteMap = _mapper.Map<Quote>(quoteCreate);
+        public IActionResult Post([FromBody]QuoteDto quoteCreate)
+        { 
+            if (quoteCreate == null)
+                return BadRequest(ModelState);
+
+        var quoteMap = _mapper.Map<Quote>(quoteCreate);
             _quotesRepository.CreateQuote(quoteMap);
+
+            return Ok("Successfully created");
         }
 
         [HttpPut("{id}")]
