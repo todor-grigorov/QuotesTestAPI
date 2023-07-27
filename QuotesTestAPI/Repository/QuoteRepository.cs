@@ -13,10 +13,10 @@ namespace QuotesTestAPI.Repository
             _context = context;
         }
 
-        public void CreateQuote(Quote quote)
+        public bool CreateQuote(Quote quote)
         {
             _context.Quotes.Add(quote);
-            _context.SaveChanges();
+            return Save();
         }
 
         public void DeleteQuote(Quote quote)
