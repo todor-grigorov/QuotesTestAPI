@@ -6,7 +6,7 @@ namespace QuotesTestAPI.Interfacecs
     {
         ICollection<Quote> GetQuotes();
         Quote GetQuotesById(int id);
-        void CreateQuote(Quote quote);
+        bool CreateQuote(Quote quote);
         void UpdateQuote(Quote quote);
         void DeleteQuote(Quote quote);
         bool QuoteExists(int id);
