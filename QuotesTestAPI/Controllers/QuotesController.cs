@@ -77,10 +77,15 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]QuoteDto updateQuote)
+        public IActionResult Put(int id, [FromBody]QuoteDto updateQuote)
         {
+            if (updateQuote == null)
+                return BadRequest(ModelState);
+
             var quoteMap = _mapper.Map<Quote>(updateQuote);
             _quotesRepository.UpdateQuote(quoteMap);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
