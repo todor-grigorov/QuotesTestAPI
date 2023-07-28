@@ -49,6 +49,8 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
         public IActionResult Post([FromBody]QuoteDto quoteCreate)
         { 
             if (quoteCreate == null)
