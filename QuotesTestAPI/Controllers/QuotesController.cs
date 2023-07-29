@@ -82,6 +82,12 @@ namespace QuotesTestAPI.Controllers
             if (updateQuote == null)
                 return BadRequest(ModelState);
 
+            if (!_quotesRepository.QuoteExists(id))
+                return NotFound();
+
+            if (!ModelState.IsValid)
+                return BadRequest();
+
             var quoteMap = _mapper.Map<Quote>(updateQuote);
             _quotesRepository.UpdateQuote(quoteMap);
 
