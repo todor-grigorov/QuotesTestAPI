@@ -46,10 +46,10 @@ namespace QuotesTestAPI.Repository
             return saved > 0 ? true : false;
         }
 
-        public void UpdateQuote(Quote quote)
+        public bool UpdateQuote(Quote quote)
         {
             _context.Update(quote);
-            _context.SaveChanges();
+            return Save();
         }
     }
 }
