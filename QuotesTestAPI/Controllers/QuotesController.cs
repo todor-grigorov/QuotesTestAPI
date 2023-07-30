@@ -89,7 +89,12 @@ namespace QuotesTestAPI.Controllers
                 return BadRequest();
 
             var quoteMap = _mapper.Map<Quote>(updateQuote);
-            _quotesRepository.UpdateQuote(quoteMap);
+            
+            if (!_quotesRepository.UpdateQuote(quoteMap))
+            {
+                ModelState.AddModelError("", "Something went wrong updating quote");
+                return StatusCode(500, ModelState);
+            }
 
             return NoContent();
         }
