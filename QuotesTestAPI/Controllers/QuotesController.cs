@@ -77,6 +77,9 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
         public IActionResult Put(int id, [FromBody]QuoteDto updateQuote)
         {
             if (updateQuote == null)
