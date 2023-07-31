@@ -103,10 +103,18 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            if (!_quotesRepository.QuoteExists(id))
+            {
+                return NotFound();
+            }
+
+
             var quote = _quotesRepository.GetQuotesById(id);
             _quotesRepository.DeleteQuote(quote);
+
+            return NoContent();
         }
     }
 }
