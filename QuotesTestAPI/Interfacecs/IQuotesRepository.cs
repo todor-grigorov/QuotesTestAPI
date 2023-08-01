@@ -8,7 +8,7 @@ namespace QuotesTestAPI.Interfacecs
         Quote GetQuotesById(int id);
         bool CreateQuote(Quote quote);
         bool UpdateQuote(Quote quote);
-        void DeleteQuote(Quote quote);
+        bool DeleteQuote(Quote quote);
         bool QuoteExists(int id);
         bool Save();
     }
