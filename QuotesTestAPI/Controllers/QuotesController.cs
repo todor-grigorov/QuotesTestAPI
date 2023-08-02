@@ -111,8 +111,15 @@ namespace QuotesTestAPI.Controllers
             }
 
 
-            var quote = _quotesRepository.GetQuotesById(id);
-            _quotesRepository.DeleteQuote(quote);
+            var quoteToDelete = _quotesRepository.GetQuotesById(id);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            if (_quotesRepository.DeleteQuote(quoteToDelete))
+            {
+                ModelState.AddModelError("", "Something went wrong deleting category");
+            }
 
             return NoContent();
         }
