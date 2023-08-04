@@ -121,7 +121,7 @@ namespace QuotesTestAPI.Controllers
 
             if (_quotesRepository.DeleteQuote(quoteToDelete))
             {
-                ModelState.AddModelError("", "Something went wrong deleting category");
+                ModelState.AddModelError("", "Something went wrong deleting quote");
             }
 
             return NoContent();
