@@ -7,6 +7,8 @@ using QuotesTestAPI.Models;
 
 namespace QuotesTestAPI.Controllers
 {
+    [Route("api/[controller]")]
+    [ApiController]
     public class QuotesController : Controller
     {
         private readonly IQuotesRepository _quotesRepository;
