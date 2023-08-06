@@ -87,6 +87,9 @@ namespace QuotesTestAPI.Controllers
             if (updateQuote == null)
                 return BadRequest(ModelState);
 
+            if (id != updateQuote.Id)
+                return BadRequest(ModelState);
+
             if (!_quotesRepository.QuoteExists(id))
                 return NotFound();
 
