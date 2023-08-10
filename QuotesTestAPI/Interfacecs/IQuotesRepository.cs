@@ -5,7 +5,7 @@ namespace QuotesTestAPI.Interfacecs
     public interface IQuotesRepository
     {
         ICollection<Quote> GetQuotes();
-        IQueryable<Quote> GetDescendingQuotes();
+        IQueryable<Quote> GetQuotesDescending();
         IQueryable<Quote> GetQuotesAscdending();
         Quote GetQuotesById(int id);
         bool CreateQuote(Quote quote);

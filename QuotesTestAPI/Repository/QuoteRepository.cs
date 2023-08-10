@@ -25,7 +25,7 @@ namespace QuotesTestAPI.Repository
            return Save();
         }
 
-        public IQueryable<Quote> GetDescendingQuotes()
+        public IQueryable<Quote> GetQuotesDescending()
         {
             return _context.Quotes.OrderByDescending(q => q.CreatedAt);
         }
