@@ -6,6 +6,7 @@ namespace QuotesTestAPI.Interfacecs
     {
         ICollection<Quote> GetQuotes();
         IQueryable<Quote> GetDescendingQuotes();
+        IQueryable<Quote> GetQuotesAscdending();
         Quote GetQuotesById(int id);
         bool CreateQuote(Quote quote);
         bool UpdateQuote(Quote quote);
