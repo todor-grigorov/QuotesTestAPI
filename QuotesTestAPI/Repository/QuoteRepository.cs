@@ -30,6 +30,11 @@ namespace QuotesTestAPI.Repository
             return _context.Quotes.OrderByDescending(q => q.CreatedAt);
         }
 
+        public IQueryable<Quote> GetQuotesAscdending()
+        {
+            return _context.Quotes.OrderBy(q => q.CreatedAt);
+        }
+
         public ICollection<Quote> GetQuotes()
         {
             return _context.Quotes.ToList();
@@ -56,5 +61,7 @@ namespace QuotesTestAPI.Repository
             _context.Update(quote);
             return Save();
         }
+
+       
     }
 }
