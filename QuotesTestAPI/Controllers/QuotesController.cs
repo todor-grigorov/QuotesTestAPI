@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using QuotesTestAPI.Common;
 using QuotesTestAPI.Dto;
 using QuotesTestAPI.Interfacecs;
 using QuotesTestAPI.Models;
@@ -21,11 +22,24 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
+        [ProducesResponseType(200, Type = typeof(IQueryable<QuoteDto>))]
         [ProducesResponseType(400)]
-        public IActionResult Get()
+        public IActionResult Get(SortingOrder sort = SortingOrder.Default)
         {
-            var quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
+            IQueryable quotesResult;
+
+            switch (sort)
+            {
+                case SortingOrder.Descending:
+                    quotesResult = _mapper.Map<IQueryable<QuoteDto>>(_quotesRepository.GetQuotesDescending());
+                    break;
+                case SortingOrder.Ascending:
+                    quotesResult = _mapper.Map<IQueryable<QuoteDto>>(_quotesRepository.GetQuotesAscdending());
+                    break;
+                default:
+                    quotesResult = _mapper.Map<IQueryable<QuoteDto>>(_quotesRepository.GetQuotes());
+                    break;
+            }
 
             if (!ModelState.IsValid)
             {
