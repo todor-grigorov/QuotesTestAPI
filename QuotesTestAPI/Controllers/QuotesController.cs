@@ -22,22 +22,22 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(200, Type = typeof(IQueryable<QuoteDto>))]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
         [ProducesResponseType(400)]
         public IActionResult Get(SortingOrder sort = SortingOrder.Default)
         {
-            IQueryable quotesResult;
+            IEnumerable<QuoteDto> quotesResult;
 
             switch (sort)
             {
                 case SortingOrder.Descending:
-                    quotesResult = _mapper.Map<IQueryable<QuoteDto>>(_quotesRepository.GetQuotesDescending());
+                    quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotesDescending());
                     break;
                 case SortingOrder.Ascending:
-                    quotesResult = _mapper.Map<IQueryable<QuoteDto>>(_quotesRepository.GetQuotesAscdending());
+                    quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotesAscdending());
                     break;
                 default:
-                    quotesResult = _mapper.Map<IQueryable<QuoteDto>>(_quotesRepository.GetQuotes());
+                    quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes());
                     break;
             }
 
