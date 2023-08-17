@@ -64,6 +64,21 @@ namespace QuotesTestAPI.Controllers
             return Ok(quote);
         }
 
+        [HttpGet("/paging", Name = "GetPagingQuotes")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
+        [ProducesResponseType(400)]
+        public IActionResult PagingQuotes(int page, int pageSize)
+        {
+            var quotesResult = _mapper.Map<IEnumerable<QuoteDto>>(_quotesRepository.GetQuotes().Skip((page - 1) * pageSize).Take(pageSize));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(quotesResult);
+        }
+
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
