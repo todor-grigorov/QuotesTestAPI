@@ -8,6 +8,7 @@ namespace QuotesTestAPI.Interfacecs
         ICollection<Quote> GetQuotesDescending();
         ICollection<Quote> GetQuotesAscdending();
         Quote GetQuotesById(int id);
+        ICollection<Quote> SearchQuotes(string searchTerm);
         bool CreateQuote(Quote quote);
         bool UpdateQuote(Quote quote);
         bool DeleteQuote(Quote quote);
