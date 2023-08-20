@@ -61,5 +61,10 @@ namespace QuotesTestAPI.Repository
             _context.Update(quote);
             return Save();
         }
+
+        public ICollection<Quote> SearchQuotes(string searchTerm)
+        {
+            return _context.Quotes.Where(q => q.Type == searchTerm).ToList();
+        }
     }
 }
