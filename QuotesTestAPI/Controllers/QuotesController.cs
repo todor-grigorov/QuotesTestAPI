@@ -79,7 +79,7 @@ namespace QuotesTestAPI.Controllers
             return Ok(quotesResult);
         }
 
-        [HttpGet("/search", Name = "GetPagingQuotes")]
+        [HttpGet("/search", Name = "SearchQuote")]
         [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
         [ProducesResponseType(400)]
         public IActionResult SearchQuote(string serchTerm)
