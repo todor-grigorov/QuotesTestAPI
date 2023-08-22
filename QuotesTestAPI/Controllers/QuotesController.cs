@@ -79,6 +79,21 @@ namespace QuotesTestAPI.Controllers
             return Ok(quotesResult);
         }
 
+        [HttpGet("/search", Name = "GetPagingQuotes")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
+        [ProducesResponseType(400)]
+        public IActionResult SearchQuote(string serchTerm)
+        {
+            var quotesResult = _mapper.Map<IEnumerable<Quote>>(_quotesRepository.SearchQuotes(serchTerm));
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            return Ok(quotesResult);
+        }
+
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
