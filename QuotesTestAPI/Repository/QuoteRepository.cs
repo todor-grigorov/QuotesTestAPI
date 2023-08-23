@@ -64,7 +64,7 @@ namespace QuotesTestAPI.Repository
 
         public ICollection<Quote> SearchQuotes(string searchTerm)
         {
-            return _context.Quotes.Where(q => q.Type == searchTerm).ToList();
+            return _context.Quotes.Where(q => q.Type.StartsWith(searchTerm)).ToList();
         }
     }
 }
