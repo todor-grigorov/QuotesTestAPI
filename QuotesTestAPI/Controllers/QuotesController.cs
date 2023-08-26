@@ -22,7 +22,7 @@ namespace QuotesTestAPI.Controllers
         }
 
         [HttpGet]
-        [ResponseCache(Duration = 60)]
+        [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
         [ProducesResponseType(200, Type = typeof(IEnumerable<QuoteDto>))]
         [ProducesResponseType(400)]
         public IActionResult Get(SortingOrder sort = SortingOrder.Default)
