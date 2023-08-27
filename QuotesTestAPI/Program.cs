@@ -35,4 +35,16 @@ app.UseResponseCaching();
 
 app.MapControllers();
 
+app.Use(async (context, next) =>
+{
+    context.Response.GetTypedHeaders().CacheControl =
+        new Microsoft.Net.Http.Headers.CacheControlHeaderValue()
+        {
+            Public = true,
+            MaxAge = TimeSpan.FromSeconds(10)
+        };
+
+    await next();
+});
+
 app.Run();
